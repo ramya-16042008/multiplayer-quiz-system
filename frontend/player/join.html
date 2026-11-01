@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIPHERX | Join Quiz</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/player.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <span class="logo-mark">C</span>
+        <span>CIPHERX</span>
+    </div>
+
+    <nav>
+        <a href="../index.html">Home</a>
+    </nav>
+</header>
+
+<main class="player-page">
+
+    <div class="join-card">
+
+        <p class="eyebrow">PLAYER ACCESS</p>
+
+        <h1>Join the <span>Challenge.</span></h1>
+
+        <p class="form-description">
+            Enter the Quiz ID and entry password provided by the administrator.
+        </p>
+
+        <form id="joinQuizForm">
+
+            <label for="playerName">Player Name</label>
+            <input
+                type="text"
+                id="playerName"
+                placeholder="Enter your name"
+                required
+            >
+
+            <label for="quizId">Quiz ID</label>
+            <input
+                type="text"
+                id="quizId"
+                placeholder="Enter Quiz ID"
+                required
+            >
+
+            <label for="entryPassword">Entry Password</label>
+            <input
+                type="password"
+                id="entryPassword"
+                placeholder="Enter entry password"
+                required
+            >
+
+            <button type="submit" class="btn primary full-width">
+                Join Quiz
+            </button>
+
+        </form>
+
+        <p id="joinMessage" class="message"></p>
+
+    </div>
+
+</main>
+
+<script src="../js/player.js"></script>
+
+</body>
+</html>

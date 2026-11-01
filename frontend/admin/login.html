@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CIPHERX | Admin Login</title>
+
+    <link rel="stylesheet"
+          href="../css/main.css">
+
+    <link rel="stylesheet"
+          href="../css/admin.css">
+
+    <style>
+
+        .login-page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #080b12;
+        }
+
+        .login-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .login-brand-inner {
+            max-width: 500px;
+        }
+
+        .login-symbol {
+            width: 90px;
+            height: 90px;
+            border: 1px solid rgba(80,190,255,0.4);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 800;
+            color: #69d5ff;
+            margin-bottom: 30px;
+            box-shadow:
+                0 0 35px rgba(80,190,255,0.12);
+        }
+
+        .login-brand h1 {
+            font-size: 56px;
+            margin: 0 0 15px;
+            letter-spacing: -2px;
+        }
+
+        .login-brand h1 span {
+            color: #69d5ff;
+        }
+
+        .login-brand p {
+            color: #8c96aa;
+            line-height: 1.8;
+            max-width: 430px;
+        }
+
+        .login-status {
+            display: flex;
+            gap: 12px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .login-status span {
+            padding: 9px 13px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            color: #aeb8ca;
+            font-size: 12px;
+            letter-spacing: 0.8px;
+        }
+
+        .login-panel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 460px;
+        }
+
+        .login-eyebrow {
+            color: #69d5ff;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .login-box h2 {
+            margin: 0;
+            font-size: 38px;
+        }
+
+        .login-subtitle {
+            color: #7f899d;
+            margin: 12px 0 30px;
+            line-height: 1.6;
+        }
+
+        .login-card {
+            background: #10141d;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+        }
+
+        .login-card label {
+            display: block;
+            margin-bottom: 8px;
+            color: #d7deea;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .login-card input {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            padding: 14px 15px;
+            background: #090c13;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: white;
+            outline: none;
+        }
+
+        .login-card input:focus {
+            border-color: #69d5ff;
+            box-shadow: 0 0 0 3px rgba(105,213,255,0.08);
+        }
+
+        .login-button {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            padding: 14px;
+            border-radius: 10px;
+            background: #69d5ff;
+            color: #061018;
+            font-size: 15px;
+            font-weight: 800;
+            transition: 0.2s ease;
+        }
+
+        .login-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 30px rgba(105,213,255,0.18);
+        }
+
+        #loginMessage {
+            min-height: 20px;
+            margin: 15px 0 0;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 22px;
+            color: #8993a7;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-home:hover {
+            color: #69d5ff;
+        }
+
+        @media (max-width: 850px) {
+
+            .login-page {
+                grid-template-columns: 1fr;
+            }
+
+            .login-brand {
+                display: none;
+            }
+
+            .login-panel {
+                min-height: 100vh;
+                padding: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="login-page">
+
+        <!-- BRAND SIDE -->
+        <section class="login-brand">
+
+            <div class="login-brand-inner">
+
+                <div class="login-symbol">
+                    C<span style="color:#8b7cff;">X</span>
+                </div>
+
+                <h1>
+                    CIPHER<span>X</span>
+                </h1>
+
+                <p>
+                    Secure control center for managing
+                    quizzes, questions, participants,
+                    live competitions and performance
+                    reports.
+                </p>
+
+                <div class="login-status">
+                    <span>SECURE ACCESS</span>
+                    <span>REAL-TIME</span>
+                    <span>ADMIN CONTROL</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOGIN SIDE -->
+        <section class="login-panel">
+
+            <div class="login-box">
+
+                <div class="login-eyebrow">
+                    CIPHERX CONTROL CENTER
+                </div>
+
+                <h2>
+                    Admin Login
+                </h2>
+
+                <p class="login-subtitle">
+                    Sign in to manage your CIPHERX
+                    multiplayer quiz platform.
+                </p>
+
+
+                <div class="login-card">
+
+                    <form id="adminLoginForm">
+
+                        <label for="username">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter admin username"
+                            autocomplete="username"
+                            required
+                        >
+
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter admin password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            type="submit"
+                            class="login-button">
+                            Sign In
+                        </button>
+
+
+                        <p id="loginMessage"></p>
+
+                    </form>
+
+                </div>
+
+
+                <!-- IMPORTANT:
+                     Since login.html is already inside /admin/,
+                     going back to index requires ../index.html -->
+                <a
+                    href="../index.html"
+                    class="back-home">
+                    ← Back to CIPHERX
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script src="../js/auth.js"></script>
+
+</body>
+
+</html>

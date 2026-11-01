@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CIPHERX | Participants</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        <span class="logo-mark">C</span>
+        <span>CIPHERX</span>
+    </div>
+
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="../index.html">Home</a>
+    </nav>
+
+</header>
+
+<main class="admin-page">
+
+    <div class="admin-header">
+
+        <div>
+
+            <p class="eyebrow">
+                LIVE PARTICIPANTS
+            </p>
+
+            <h1>
+                Monitor the
+                <span>Players.</span>
+            </h1>
+
+            <p class="admin-description">
+                View players currently connected to the
+                selected quiz session.
+            </p>
+
+        </div>
+
+        <div class="live-status">
+            <span class="live-dot"></span>
+            LIVE
+        </div>
+
+    </div>
+
+    <section class="participant-summary">
+
+        <div class="stat-card">
+
+            <span>Players Joined</span>
+
+            <strong id="joinedPlayers">
+                0
+            </strong>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>Answered</span>
+
+            <strong id="answeredPlayers">
+                0
+            </strong>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>In Progress</span>
+
+            <strong id="activePlayers">
+                0
+            </strong>
+
+        </div>
+
+    </section>
+
+    <section class="participants-section">
+
+        <div class="section-heading">
+
+            <div>
+                <p class="eyebrow">
+                    PLAYER LIST
+                </p>
+
+                <h2>Participants</h2>
+            </div>
+
+            <button
+                id="startQuizBtn"
+                class="btn primary">
+                Start Quiz
+            </button>
+
+        </div>
+
+        <div class="participant-table">
+
+            <div class="participant-row header">
+
+                <span>Player</span>
+                <span>Status</span>
+                <span>Score</span>
+
+            </div>
+
+            <div id="participantsList">
+
+                <div class="empty-state">
+
+                    <h3>No participants yet</h3>
+
+                    <p>
+                        Players will appear here after
+                        joining the quiz.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="../js/admin.js"></script>
+
+</body>
+</html>

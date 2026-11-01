@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CIPHERX | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/admin.css">
+
+    <style>
+        .quiz-list {
+            margin-top: 25px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .quiz-card {
+            background: #11151d;
+            border: 1px solid #263241;
+            border-radius: 14px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .quiz-info h3 {
+            margin: 0 0 10px;
+            font-size: 22px;
+        }
+
+        .quiz-info p {
+            margin: 6px 0;
+            color: #9ba7b8;
+        }
+
+        .quiz-code {
+            color: #63d9ff !important;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .quiz-status {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-active {
+            background: rgba(34, 197, 94, 0.12);
+            color: #72e6a5;
+            border: 1px solid rgba(34, 197, 94, 0.35);
+        }
+
+        .status-inactive {
+            background: rgba(148, 163, 184, 0.10);
+            color: #aab4c3;
+            border: 1px solid #303947;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-message {
+            padding: 20px;
+            border: 1px dashed #303947;
+            border-radius: 14px;
+            color: #9ba7b8;
+            margin-top: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin: 35px 0 55px;
+        }
+
+        .stat-card {
+            background: #11151d;
+            border: 1px solid #263241;
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .stat-label {
+            color: #9ba7b8;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quiz-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="container navbar-inner">
+
+        <a href="../index.html" class="logo">
+            <span class="logo-mark">C</span>
+            <span class="logo-text">CIPHERX</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+
+            <a href="#" onclick="logoutAdmin(); return false;">
+                Logout
+            </a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main class="admin-page">
+
+    <div class="form-page-header">
+
+        <p class="eyebrow">
+            ADMIN CONTROL CENTER
+        </p>
+
+        <h1>
+            Manage the <span>Competition.</span>
+        </h1>
+
+        <p>
+            Create quizzes, manage questions,
+            start live sessions and monitor competition.
+        </p>
+
+        <div style="margin-top:25px;">
+            <a href="create-quiz.html"
+               class="btn primary">
+                + Create Quiz
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+            <div class="stat-label">
+                TOTAL QUIZZES
+            </div>
+
+            <div class="stat-value"
+                 id="totalQuizzes">
+                0
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-label">
+                ACTIVE QUIZZES
+            </div>
+
+            <div class="stat-value"
+                 id="activeQuizzes">
+                0
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-label">
+                TOTAL PARTICIPANTS
+            </div>
+
+            <div class="stat-value">
+                0
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <div class="stat-label">
+                COMPLETED QUIZZES
+            </div>
+
+            <div class="stat-value">
+                0
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- QUIZ MANAGEMENT -->
+
+    <section>
+
+        <div class="section-heading">
+
+            <p class="eyebrow">
+                QUIZ MANAGEMENT
+            </p>
+
+            <h2>
+                Your <span>Quizzes.</span>
+            </h2>
+
+            <p>
+                Manage your CIPHERX quiz sessions.
+            </p>
+
+        </div>
+
+
+        <div id="quizLoading"
+             class="dashboard-message">
+
+            Loading quizzes...
+
+        </div>
+
+
+        <div id="quizList"
+             class="quiz-list">
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+const API_BASE_URL = "http://localhost:8080";
+
+
+function getToken() {
+
+    return sessionStorage.getItem(
+        "cipherxToken"
+    );
+}
+
+
+function getHeaders() {
+
+    const token = getToken();
+
+    return {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
+    };
+}
+
+
+/* LOAD QUIZZES */
+
+async function loadQuizzes() {
+
+    const token = getToken();
+
+    if (!token) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    const loading =
+        document.getElementById(
+            "quizLoading"
+        );
+
+    const quizList =
+        document.getElementById(
+            "quizList"
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE_URL +
+                "/api/quizzes",
+                {
+                    method: "GET",
+                    headers: getHeaders()
+                }
+            );
+
+
+        if (response.status === 401) {
+
+            sessionStorage.clear();
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to load quizzes"
+            );
+        }
+
+
+        const data =
+            await response.json();
+
+
+        /*
+         * Spring may return:
+         *
+         * [
+         *   {...},
+         *   {...}
+         * ]
+         *
+         * or a Page-like object.
+         */
+
+        const quizzes =
+            Array.isArray(data)
+                ? data
+                : data.value || [];
+
+
+        document.getElementById(
+            "totalQuizzes"
+        ).textContent =
+            quizzes.length;
+
+
+        const activeCount =
+            quizzes.filter(
+                quiz => quiz.active === true
+            ).length;
+
+
+        document.getElementById(
+            "activeQuizzes"
+        ).textContent =
+            activeCount;
+
+
+        loading.style.display =
+            "none";
+
+
+        quizList.innerHTML = "";
+
+
+        if (quizzes.length === 0) {
+
+            loading.style.display =
+                "block";
+
+            loading.textContent =
+                "No quizzes found.";
+
+            return;
+        }
+
+
+        quizzes.forEach(
+            function (quiz) {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "quiz-card";
+
+
+                const statusClass =
+                    quiz.active
+                        ? "status-active"
+                        : "status-inactive";
+
+
+                const statusText =
+                    quiz.active
+                        ? "ACTIVE"
+                        : "INACTIVE";
+
+
+                card.innerHTML = `
+
+                    <div class="quiz-info">
+
+                        <h3>
+                            ${escapeHTML(
+                                quiz.title
+                            )}
+                        </h3>
+
+                        <p>
+                            Quiz ID:
+                            <strong>
+                                ${quiz.quizId}
+                            </strong>
+                        </p>
+
+                        <p class="quiz-code">
+                            Quiz Code:
+                            ${escapeHTML(
+                                quiz.quizCode
+                            )}
+                        </p>
+
+                        <p>
+                            Time:
+                            ${quiz.timePerQuestion}
+                            seconds / question
+                        </p>
+
+                        <span class="quiz-status ${statusClass}">
+                            ${statusText}
+                        </span>
+
+                    </div>
+
+
+                    <div class="quiz-actions">
+
+                        <button
+                            class="btn secondary"
+                            onclick="manageQuestions(${quiz.quizId})">
+
+                            Questions
+
+                        </button>
+
+
+                        ${
+                            quiz.active
+
+                            ? `
+
+                                <button
+                                    class="btn secondary"
+                                    onclick="stopQuiz(${quiz.quizId})">
+
+                                    Stop Quiz
+
+                                </button>
+
+                              `
+
+                            : `
+
+                                <button
+                                    class="btn primary"
+                                    onclick="startQuiz(${quiz.quizId})">
+
+                                    Start Quiz
+
+                                </button>
+
+                              `
+                        }
+
+                    </div>
+                `;
+
+
+                quizList.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Dashboard error:",
+            error
+        );
+
+
+        loading.style.display =
+            "block";
+
+        loading.textContent =
+            "Unable to load quizzes. Check that CIPHERX backend is running.";
+
+    }
+
+}
+
+
+/* START QUIZ */
+
+async function startQuiz(
+    quizId
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE_URL +
+                "/api/quizzes/" +
+                quizId +
+                "/start",
+                {
+                    method: "PATCH",
+                    headers: getHeaders()
+                }
+            );
+
+
+        if (response.status === 401) {
+
+            sessionStorage.clear();
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to start quiz"
+            );
+        }
+
+
+        alert(
+            "Quiz started successfully!"
+        );
+
+
+        loadQuizzes();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to start quiz."
+        );
+
+    }
+
+}
+
+
+/* STOP QUIZ */
+
+async function stopQuiz(
+    quizId
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE_URL +
+                "/api/quizzes/" +
+                quizId +
+                "/stop",
+                {
+                    method: "PATCH",
+                    headers: getHeaders()
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to stop quiz"
+            );
+        }
+
+
+        loadQuizzes();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to stop quiz."
+        );
+
+    }
+
+}
+
+
+/* QUESTIONS */
+
+function manageQuestions(
+    quizId
+) {
+
+    window.location.href =
+        "questions.html?quizId=" +
+        quizId;
+
+}
+
+
+/* LOGOUT */
+
+async function logoutAdmin() {
+
+    const token =
+        getToken();
+
+
+    if (token) {
+
+        try {
+
+            await fetch(
+                API_BASE_URL +
+                "/api/auth/logout",
+                {
+                    method: "POST",
+                    headers: {
+                        "Authorization":
+                            "Bearer " +
+                            token
+                    }
+                }
+            );
+
+        } catch (error) {
+
+            console.log(
+                "Logout request failed"
+            );
+
+        }
+
+    }
+
+
+    sessionStorage.clear();
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* HTML SAFETY */
+
+function escapeHTML(
+    value
+) {
+
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* LOAD ON PAGE OPEN */
+
+loadQuizzes();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CIPHERX | Create Quiz</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        <span class="logo-mark">C</span>
+        <span>CIPHERX</span>
+    </div>
+
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="../index.html">Home</a>
+    </nav>
+
+</header>
+
+<main class="admin-page">
+
+    <div class="form-page-header">
+
+        <p class="eyebrow">QUIZ MANAGEMENT</p>
+
+        <h1>
+            Create a
+            <span>New Quiz.</span>
+        </h1>
+
+        <p>
+            Configure the quiz details before adding questions.
+        </p>
+
+    </div>
+
+    <section class="admin-form-card">
+
+        <form id="createQuizForm">
+
+            <div class="form-group">
+
+                <label for="quizTitle">
+                    Quiz Title
+                </label>
+
+                <input
+                    type="text"
+                    id="quizTitle"
+                    placeholder="Example: Cyber Security Basics"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="quizDescription">
+                    Description
+                </label>
+
+                <textarea
+                    id="quizDescription"
+                    rows="4"
+                    placeholder="Enter quiz description..."
+                ></textarea>
+
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="timePerQuestion">
+                        Time Per Question
+                    </label>
+
+                    <input
+                        type="number"
+                        id="timePerQuestion"
+                        min="5"
+                        max="300"
+                        value="30"
+                        required
+                    >
+
+                    <small>
+                        Time in seconds
+                    </small>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="entryPassword">
+                        Entry Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="entryPassword"
+                        placeholder="Create entry password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <a href="dashboard.html"
+                   class="btn secondary">
+                    Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn primary">
+                    Create Quiz
+                </button>
+
+            </div>
+
+            <p id="createQuizMessage"
+               class="form-message">
+            </p>
+
+        </form>
+
+    </section>
+
+</main>
+
+<script src="../js/admin.js"></script>
+
+</body>
+</html>

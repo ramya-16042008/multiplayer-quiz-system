@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CIPHERX | Quiz Report</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/admin.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <span class="logo-mark">
+            C
+        </span>
+
+        <span>
+            CIPHERX
+        </span>
+
+    </div>
+
+    <nav>
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="reports.html">
+            Reports
+        </a>
+
+        <a href="../admin/dashboard.html">
+            Dashboard
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="admin-page">
+
+
+    <div class="admin-header">
+
+        <div>
+
+            <p class="eyebrow">
+                QUIZ PERFORMANCE
+            </p>
+
+            <h1>
+
+                Quiz
+                <span>Report.</span>
+
+            </h1>
+
+            <p class="admin-description"
+               id="reportQuizTitle">
+
+                Quiz performance summary
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <section class="admin-stats">
+
+        <div class="stat-card">
+
+            <span>
+                Total Players
+            </span>
+
+            <strong id="reportPlayers">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span>
+                Questions
+            </span>
+
+            <strong id="reportQuestions">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span>
+                Average Score
+            </span>
+
+            <strong id="averageScore">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span>
+                Completion
+            </span>
+
+            <strong id="completionRate">
+                0%
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <section class="quiz-management">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    PLAYER PERFORMANCE
+                </p>
+
+                <h2>
+                    Rankings
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="quiz-table">
+
+            <div class="quiz-row header">
+
+                <span>
+                    Rank
+                </span>
+
+                <span>
+                    Player
+                </span>
+
+                <span>
+                    Score
+                </span>
+
+                <span>
+                    Status
+                </span>
+
+            </div>
+
+
+            <div id="reportPlayersList">
+
+                <div class="empty-state">
+
+                    <h3>
+                        No player results
+                    </h3>
+
+                    <p>
+                        Player performance will appear
+                        after the quiz is completed.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<script src="../js/reports.js"></script>
+
+</body>
+
+</html>

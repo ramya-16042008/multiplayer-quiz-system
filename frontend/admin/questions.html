@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CIPHERX | Questions</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <span class="logo-mark">C</span>
+        <span>CIPHERX</span>
+    </div>
+
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="../index.html">Home</a>
+    </nav>
+</header>
+
+<main class="admin-page">
+
+    <div class="admin-header">
+        <div>
+            <p class="eyebrow">QUESTION MANAGEMENT</p>
+
+            <h1>Build Your <span>Quiz.</span></h1>
+
+            <p class="admin-description">
+                Add multiple-choice questions and define
+                the correct answer and points.
+            </p>
+        </div>
+
+        <button
+            type="button"
+            id="addQuestionBtn"
+            class="btn primary">
+            + Add Question
+        </button>
+    </div>
+
+    <section class="question-management">
+        <div id="questionsList">
+            <div class="empty-state">
+                <h3>No questions added</h3>
+
+                <p>
+                    Start building your quiz by adding
+                    your first question.
+                </p>
+
+                <button
+                    type="button"
+                    id="emptyAddQuestionBtn"
+                    class="btn primary">
+                    Add Question
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADD QUESTION MODAL -->
+    <div id="questionModal" class="modal hidden">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div>
+                    <p class="eyebrow">NEW QUESTION</p>
+                    <h2>Add Question</h2>
+                </div>
+
+                <button
+                    type="button"
+                    id="closeQuestionModal"
+                    class="close-btn"
+                    aria-label="Close">
+                    &times;
+                </button>
+            </div>
+
+            <form id="questionForm">
+
+                <div class="form-group">
+                    <label for="questionTextInput">Question</label>
+
+                    <textarea
+                        id="questionTextInput"
+                        rows="4"
+                        placeholder="Enter your question..."
+                        required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Options</label>
+
+                    <input
+                        type="text"
+                        id="optionA"
+                        placeholder="Option A"
+                        required>
+
+                    <input
+                        type="text"
+                        id="optionB"
+                        placeholder="Option B"
+                        required>
+
+                    <input
+                        type="text"
+                        id="optionC"
+                        placeholder="Option C"
+                        required>
+
+                    <input
+                        type="text"
+                        id="optionD"
+                        placeholder="Option D"
+                        required>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="correctOption">Correct Option</label>
+
+                        <select id="correctOption" required>
+                            <option value="0">Option A</option>
+                            <option value="1">Option B</option>
+                            <option value="2">Option C</option>
+                            <option value="3">Option D</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="questionPoints">Points</label>
+
+                        <input
+                            type="number"
+                            id="questionPoints"
+                            min="1"
+                            value="10"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button
+                        type="button"
+                        id="cancelQuestionBtn"
+                        class="btn secondary">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="btn primary">
+                        Add Question
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</main>
+
+<script src="../js/admin.js"></script>
+
+</body>
+</html>

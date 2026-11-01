@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CIPHERX | Live Quiz</title>
+
+    <link rel="stylesheet"
+          href="../css/main.css">
+
+    <link rel="stylesheet"
+          href="../css/player.css">
+</head>
+
+<body class="quiz-page">
+
+    <!-- TOP NAVBAR -->
+    <header class="quiz-header">
+
+        <div class="brand">
+            <div class="brand-mark">C</div>
+
+            <div>
+                <div class="brand-name">CIPHERX</div>
+                <div class="brand-tagline">
+                    Where Knowledge Meets Competition.
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-live-status">
+            <span class="live-dot"></span>
+            LIVE QUIZ
+        </div>
+
+    </header>
+
+
+    <!-- MAIN QUIZ AREA -->
+    <main class="quiz-container">
+
+        <!-- QUIZ INFO -->
+        <section class="quiz-top-info">
+
+            <div>
+                <span class="small-label">
+                    QUESTION
+                </span>
+
+                <div class="question-number"
+                     id="questionNumber">
+                    01
+                </div>
+            </div>
+
+            <div class="timer-box">
+
+                <span class="timer-label">
+                    TIME LEFT
+                </span>
+
+                <div class="timer"
+                     id="timer">
+                    00:30
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROGRESS -->
+        <section class="progress-section">
+
+            <div class="progress-text">
+
+                <span id="progressText">
+                    Question 1 of 3
+                </span>
+
+                <span id="progressPercent">
+                    33%
+                </span>
+
+            </div>
+
+            <div class="progress-track">
+
+                <div class="progress-bar"
+                     id="progressBar">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUESTION CARD -->
+        <section class="question-card">
+
+            <div class="question-badge">
+                CIPHERX CHALLENGE
+            </div>
+
+            <h1 id="questionText">
+                Loading question...
+            </h1>
+
+        </section>
+
+
+        <!-- OPTIONS -->
+        <section class="options-grid"
+                 id="optionsContainer">
+
+            <!-- Options inserted by JavaScript -->
+
+        </section>
+
+
+        <!-- BOTTOM ACTION -->
+        <section class="quiz-actions">
+
+            <div class="selection-status"
+                 id="selectionStatus">
+                Select an answer to continue
+            </div>
+
+            <button class="next-button"
+                    id="nextButton"
+                    disabled>
+
+                <span id="nextButtonText">
+                    NEXT
+                </span>
+
+                <span class="arrow">
+                    →
+                </span>
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- RESULT OVERLAY -->
+    <div class="quiz-overlay"
+         id="quizOverlay">
+
+        <div class="result-card">
+
+            <div class="result-icon">
+                ✓
+            </div>
+
+            <div class="result-label">
+                QUIZ COMPLETE
+            </div>
+
+            <h2>
+                Challenge Finished
+            </h2>
+
+            <p id="resultMessage">
+                Your responses have been recorded.
+            </p>
+
+            <div class="result-score"
+                 id="resultScore">
+                0 / 0
+            </div>
+
+            <button class="result-button"
+                    onclick="window.location.href='leaderboard.html'">
+                VIEW LEADERBOARD
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="../js/quiz.js"></script>
+
+</body>
+</html>
